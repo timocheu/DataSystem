@@ -8,7 +8,7 @@ namespace Query
 {
     public static class Database
     {
-        public static string Insert(string table, string[] template)
+        public static string InsertRow(string table, string[] template)
         {
             StringBuilder insertSlot = new StringBuilder();
             for (int i = 0 ; i < template.Length; i++) 
@@ -22,5 +22,11 @@ namespace Query
 
             return query;
         }
+
+        public static string DeleteRow(string table, int rowId) 
+            => $"DELETE FROM {table} WHERE rowId = {rowId}";
+
+        public static string UpdateRow(string table, int rowId, string name)
+            => $"UPDATE {table} SET Name = {name} WHERE rowId = rowId";
     }
 }
