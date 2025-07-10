@@ -5,6 +5,10 @@ namespace Query
         public Form1()
         {
             InitializeComponent();
+
+            string[] template = { "a", "b", "c" };
+            string[] args = { "a", "b", "c" };
+            MessageBox.Show(Database.Insert("person", template));
         }
     }
 }
