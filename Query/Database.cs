@@ -10,17 +10,10 @@ namespace Query
     {
         public static string InsertRow(string table, string[] template)
         {
-            StringBuilder insertSlot = new StringBuilder();
-            for (int i = 0 ; i < template.Length; i++) 
-            {
-                insertSlot.Append($"@{template[i].ToLower()}");
+            // @a, @b, @c
+            string slot = string.Join(", ", template.Select(s => '@' + s).ToArray());
 
-                if (i < template.Length - 1) insertSlot.Append(", ");
-            }
-
-            string query = $"INSERT INTO {table}({string.Join(", ", template)}) VALUES ({insertSlot.ToString()})";
-
-            return query;
+            return $"INSERT INTO {table}({string.Join(", ", template)}) VALUES ({slot})";
         }
 
         public static string DeleteRow(string table, int rowId) 
